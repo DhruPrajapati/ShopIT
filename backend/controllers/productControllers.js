@@ -3,4 +3,5 @@ exports.getProducts = (req,res,next) => {
         success: true,
         message: "this route will show all products in database"
     })
+    next()
 }
