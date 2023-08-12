@@ -8,7 +8,7 @@ const { query } = require("express");
 exports.newProduct = catchAsyncError( async (req, res, next) => {
 
     const product  = await Product.create(req.body)
-     res.status(201).json({
+     res.status(201).json({     
         success: true,
         product
     })
@@ -17,8 +17,13 @@ exports.newProduct = catchAsyncError( async (req, res, next) => {
 //get all Product => ./api/v1/products
 exports.getProducts = catchAsyncError(async (req,res,next) => {
 
-    console.log(req.query)
-    const apiFeatures = new APIFeatures(Product.find(),req.query).search().filter();
+
+    const resPerPage = 4;
+
+    const apiFeatures = new APIFeatures(Product.find(),req.query)
+        .search()   
+        .filter()
+        .pagination(resPerPage);
     const Products = await apiFeatures.query;
 
     res.status(200).json({

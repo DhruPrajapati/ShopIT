@@ -1,0 +1,86 @@
+[
+    {
+
+        "name": "SanDisk Ultra 128Gb SDXC UHS-I Memory Card upto 80MB/s",
+        "price": 45.89,
+        "description": "Ultra-fast cards (2) to take better picture and full HD Videas (1) with your compact to mid with your compact to mid-range point-and-shoot cameras and camcorders. with SanDisk Ultra cards you'll benefits from faster downloads, hight capacity , and better performance to caputer and store. ",
+        "ratings": 4.5,
+        "images": [
+            {
+                "public_id": "products/tzfsnrli3szdnb4jgge",
+                "url": "https://res.cloudinary.com/shopit/image/upload/v1606231282/products/tzfsnrli3szrdnb4jgge.jpg"
+                
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Ebay",
+        "stock": 100,
+        "numOfReviews": 32,
+        "reviews": []
+        
+        
+    },
+    {
+        
+        "name": "SanDisk Ultra 64Gb SDXC UHS-I Memory Card upto 80MB/s",
+        "price": 45.89,
+        "description": "Ultra-fast cards (2) to take better picture and full HD Videas (1) with your compact to mid with your compact to mid-range point-and-shoot cameras and camcorders. with SanDisk Ultra cards you'll benefits from faster downloads, hight capacity , and better performance to caputer and store. ",
+        "ratings": 4.5,
+        "images": [
+            {
+                "public_id": "products/tzfsnrli3szdnb4jgge",
+                "url": "https://res.cloudinary.com/shopit/image/upload/v1606231282/products/tzfsnrli3szrdnb4jgge.jpg"
+                
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Ebay",
+        "stock": 10,
+        "numOfReviews": 32,
+        "reviews": []
+        
+        
+    },
+    {
+        
+        "name": "SanDisk",
+        "price": 10,
+        "description": "Ultra-fast cards (2) to take better picture and full HD Videas (1) with your compact to mid with your compact to mid-range point-and-shoot cameras and camcorders. with SanDisk Ultra cards you'll benefits from faster downloads, hight capacity , and better performance to caputer and store. ",
+        "ratings": 2.5,
+        "images": [
+            {
+                "public_id": "products/tzfsnrli3szdnb4jgge",
+                "url": "https://res.cloudinary.com/shopit/image/upload/v1606231282/products/tzfsnrli3szrdnb4jgge.jpg"
+                
+            }
+        ],
+        "category": "Electronics",
+        "seller": "amazon",
+        "stock": 10,
+        "numOfReviews": 3,
+        "reviews": []
+        
+        
+    },
+    {
+        
+        "name": "apple",
+        "price": 10,
+        "description": "Ultra-fast cards (2) to take better picture and full HD Videas (1) with your compact to mid with your compact to mid-range point-and-shoot cameras and camcorders. with SanDisk Ultra cards you'll benefits from faster downloads, hight capacity , and better performance to caputer and store. ",
+        "ratings": 2.5,
+        "images": [
+            {
+                "public_id": "products/tzfsnrli3szdnb4jgge",
+                "url": "https://res.cloudinary.com/shopit/image/upload/v1606231282/products/tzfsnrli3szrdnb4jgge.jpg"
+                
+            }
+        ],
+        "category": "Electronics",
+        "seller": "amazon",
+        "stock": 10,
+        "numOfReviews": 3,
+        "reviews": []
+        
+        
+    }
+]
