@@ -5,6 +5,7 @@ const { sendToken } = require("../Utils/jwtToken")
 const { sendEmail } = require("../Utils/sendEmail")
 const crypto = require("crypto")
 
+
 exports.registerUser = catchAsyncError( async (req,res,next) => {
 
     const {name, email,password} = req.body;
@@ -48,6 +49,46 @@ exports.loginUser = catchAsyncError( async(req, res, next) => {
 
     sendToken(user,200,res);
 
+})
+
+// Update / Change Password  => /api/v1/password/update
+exports.updatePassword = catchAsyncError(async (req,res,next) => {
+    const user  = await User.findById(req.user.id).select('+password');
+
+    //check previous user password
+    const isMatched = await  user.comparePassword(req.body.oldPassword)
+    if(!isMatched) {
+        return next(new ErrorHandler("old password is incorrect",400))
+    }
+
+    user.password = req.body.password;
+    await user.save();
+    
+    sendToken(user,200,res )
+
+})
+
+
+//Update user Profile => /api/v1/me/update
+exports.updateProfile = catchAsyncError(async (req,res,next) => {
+
+    const newUserData = {
+        name:req.body.name,
+        email:req.body.email
+    }
+
+    //update Avatar :  TODO
+
+    const user  = await User.findByIdAndUpdate(req.user.id,newUserData,{
+        new :true,
+        runValidators:true,
+        useFindAndModify: false
+    })
+    
+    res.status(200).json({
+        success: true,
+        user
+    })
 })
 
 //Forgot Password  => /api/v1/password/forget
@@ -126,6 +167,16 @@ exports.resetPassword = catchAsyncError(async (req,res,next) => {
 
 })
 
+// Get currently logged user details  =>  /api/v1/me
+exports.getUserProfile = catchAsyncError( async (req,res,next) => {
+    const user = await User.findById(req.user.id)
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
 // Logout User => /api/v1/logout
 exports.logout = catchAsyncError( async (req,res,next) => {
     res.cookie('token',null,{
@@ -137,4 +188,33 @@ exports.logout = catchAsyncError( async (req,res,next) => {
         success: true,
         message: "Logged Out"
     })
+})
+
+
+//Admin Routes 
+
+// get all users  => /api/v1/admin/users
+exports.allUsers = catchAsyncError( async (req,res,next) => {
+    const users = await User.find();
+  
+    res.status(200).json({
+        success: true,
+        users
+    })
+    
+})
+
+//Get User details => /api/v1/admin/user/:id
+exports.getUserDetails = catchAsyncError( async (req,res,next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler(`User does not found with id:${req.params.id}`,400))
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+    
 })
