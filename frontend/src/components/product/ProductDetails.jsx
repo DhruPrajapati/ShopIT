@@ -33,7 +33,7 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`Buy Best Products Online`} />
+          <MetaData title={product.name} />
           <div className="container container-fluid">
             <div className="row f-flex justify-content-around">
               <div className="col-12 col-lg-5 img-fluid" id="product_image">

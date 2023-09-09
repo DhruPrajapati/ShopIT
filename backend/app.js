@@ -9,11 +9,11 @@ const errorMiddleware = require("./middlewares/error");
 const cookieParser = require("cookie-parser");
 const order = require("./routes/order");
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-};
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1", products);
