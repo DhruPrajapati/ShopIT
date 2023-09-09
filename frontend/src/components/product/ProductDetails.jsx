@@ -53,18 +53,21 @@ const ProductDetails = () => {
 
               <div className="col-12 col-lg-5 mt-5">
                 <h3>{product.name}</h3>
-                <p id="product_id">Product # sklfjdk35fsdf5090</p>
+                <p id="product_id">Product # {product._id}</p>
 
                 <hr />
 
                 <div className="rating-outer">
-                  <div className="rating-inner"></div>
+                  <div
+                    className="rating-inner"
+                    style={{ width: `${(product.ratings / 5) * 100}%` }}
+                  ></div>
                 </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
+                <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
 
                 <hr />
 
-                <p id="product_price">$108.00</p>
+                <p id="product_price">{product.price}</p>
                 <div className="stockCounter d-inline">
                   <span className="btn btn-danger minus">-</span>
 
@@ -88,23 +91,22 @@ const ProductDetails = () => {
                 <hr />
 
                 <p>
-                  Status: <span id="stock_status">In Stock</span>
+                  Status:{" "}
+                  <span
+                    id="stock_status"
+                    className={product.stock > 0 ? "greenColor" : "redColor"}
+                  >
+                    {product.stock > 0 ? "In Stock" : "Out of Stock"}
+                  </span>
                 </p>
 
                 <hr />
 
                 <h4 className="mt-2">Description:</h4>
-                <p>
-                  Binge on movies and TV episodes, news, sports, music and more!
-                  We insisted on 720p High Definition for this 32" LED TV,
-                  bringing out more lifelike color, texture and detail. We also
-                  partnered with Roku to bring you the best possible content
-                  with thousands of channels to choose from, conveniently
-                  presented thr/ough your own custom home screen.
-                </p>
+                <p>{product.description}</p>
                 <hr />
                 <p id="product_seller mb-3">
-                  Sold by: <strong>Amazon</strong>
+                  Sold by: <strong>{product.seller}</strong>
                 </p>
 
                 <button
