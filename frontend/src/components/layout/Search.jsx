@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState("");
-
+  const [keyword, setKeyword] = useState(" ");
+  console.log("inside side", keyword.type);
   const searchHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
+      console.log("inside search handler", keyword);
       navigate(`/search/${keyword}`);
     } else {
       navigate("/");
