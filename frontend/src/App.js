@@ -4,23 +4,23 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/footer";
 import Home from "./components/Home";
 import ProductDetails from "./components/product/ProductDetails";
+import Login from "./components/user/Login";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <div className="container container-fluid">
-          <Routes>
-            <Route path="/" element={<Home />} exact />
-            <Route path="/search/:keyword" element={<Home />} exact />
-            <Route path="/search/:keyword" element={<Home />} exact />
-            <Route path="/product/:id" element={<ProductDetails />} />
-          </Routes>
-        </div>
-        <Footer />
+    <div className="App">
+      <Header />
+      <div className="container container-fluid">
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/search/:keyword" element={<Home />} exact />
+          <Route path="/search/:keyword" element={<Home />} exact />
+          <Route path="/login" element={<Login />} exact />
+          <Route path="/product/:id" element={<ProductDetails />} />
+        </Routes>
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
 }
 
