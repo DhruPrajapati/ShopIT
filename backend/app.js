@@ -8,6 +8,7 @@ const auth = require("./routes/auth");
 const errorMiddleware = require("./middlewares/error");
 const cookieParser = require("cookie-parser");
 const bodyparser = require("body-parser");
+const fileUpload = require("express-fileupload");
 
 const order = require("./routes/order");
 
@@ -15,11 +16,11 @@ const corsOptions = {
   origin: "http://localhost:3000",
 };
 
-
-
 app.use(cors(corsOptions));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(fileUpload());
+
 app.use("/api/v1", products);
 app.use("/api/v1", auth);
 app.use("/api/v1", order);

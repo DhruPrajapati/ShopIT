@@ -7,14 +7,19 @@ const cloudinary = require("cloudinary");
 const crypto = require("crypto");
 
 exports.registerUser = catchAsyncError(async (req, res, next) => {
+  console.log("this is body\n", req.body);
   const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
     width: 150,
     crop: "scale",
   });
+  const {
+    "user[name]": name,
+    "user[email]": email,
+    "user[password]": password,
+  } = req.body;
 
-  const { name, email, password } = req.body;
-
+  console.log("this is body\n", name, email, password);
   const user = await User.create({
     name,
     email,
@@ -22,7 +27,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     avatar: {
       public_id: result.public_id,
       url: result.secure_url,
-    }, 
+    },
   });
 
   sendToken(user, 200, res);

@@ -26,7 +26,7 @@ const ProductDetails = () => {
 
     dispatch(getProductDetails(id));
   }, [dispatch, alert, error, id]);
-
+  console.log("product.images = ", product.images);
   return (
     <Fragment>
       {loading ? (

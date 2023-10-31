@@ -49,12 +49,12 @@ export const register = (userData) => async (dispatch) => {
 
     const config = {
       headers: {
-        "content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
       },
     };
 
+    console.log("this user data", userData, );
     const { data } = await axios.post("/api/v1/register", userData, config);
-
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: data.user,
