@@ -123,7 +123,7 @@ const UpdateProfile = () => {
                       alt="Avatar Preview"
                     />
                   </figure>
-                </div>
+                </div >
                 <div className="custom-file">
                   <input
                     type="file"
@@ -148,7 +148,7 @@ const UpdateProfile = () => {
               Update
             </button>
           </form>
-        </div>
+        </div> 
       </div>
     </Fragment>
   );
