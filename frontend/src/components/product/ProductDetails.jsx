@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getProductDetails } from "../../actions/ProductActions";
 import Loader from "../layout/Loader";
@@ -6,9 +6,12 @@ import MetaData from "../layout/MetaData";
 import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
+import { addItemToCart } from "../../actions/cartAction";
 
 const ProductDetails = () => {
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  console.log("this is id of product detaild", id);
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, product, error } = useSelector((state) => {
@@ -26,7 +29,30 @@ const ProductDetails = () => {
 
     dispatch(getProductDetails(id));
   }, [dispatch, alert, error, id]);
-  console.log("product.images = ", product.images);
+
+  const addToCart = () => {
+    dispatch(addItemToCart(id, quantity));
+    alert.success("Item added to cart");
+  };
+
+  const increaseQty = () => {
+    const count = document.querySelector(".count");
+
+    if (count.valueAsNumber >= product.stock) return;
+
+    const qty = count.valueAsNumber + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQty = () => {
+    const count = document.querySelector(".count");
+
+    if (count.valueAsNumber <= product.stock) return;
+
+    const qty = count.valueAsNumber - 1;
+    setQuantity(qty);
+  };
+
   return (
     <Fragment>
       {loading ? (
@@ -60,8 +86,7 @@ const ProductDetails = () => {
                 <div className="rating-outer">
                   <div
                     className="rating-inner"
-                    style={{ width: `${(product.ratings / 5) * 100}%` }}
-                  ></div>
+                    style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
                 </div>
                 <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
 
@@ -69,22 +94,27 @@ const ProductDetails = () => {
 
                 <p id="product_price">{product.price}</p>
                 <div className="stockCounter d-inline">
-                  <span className="btn btn-danger minus">-</span>
+                  <span className="btn btn-danger minus" onClick={decreaseQty}>
+                    -
+                  </span>
 
                   <input
                     type="number"
                     className="form-control count d-inline"
-                    value="1"
+                    value={quantity}
+                    disabled={product.stock === 0}
                     readOnly
                   />
 
-                  <span className="btn btn-primary plus">+</span>
+                  <span className="btn btn-primary plus" onClick={increaseQty}>
+                    +
+                  </span>
                 </div>
                 <button
                   type="button"
                   id="cart_btn"
                   className="btn btn-primary d-inline ml-4"
-                >
+                  onClick={addToCart}>
                   Add to Cart
                 </button>
 
@@ -94,8 +124,7 @@ const ProductDetails = () => {
                   Status:{" "}
                   <span
                     id="stock_status"
-                    className={product.stock > 0 ? "greenColor" : "redColor"}
-                  >
+                    className={product.stock > 0 ? "greenColor" : "redColor"}>
                     {product.stock > 0 ? "In Stock" : "Out of Stock"}
                   </span>
                 </p>
@@ -114,8 +143,7 @@ const ProductDetails = () => {
                   type="button"
                   className="btn btn-primary mt-4"
                   data-toggle="modal"
-                  data-target="#ratingModal"
-                >
+                  data-target="#ratingModal">
                   Submit Your Review
                 </button>
 
@@ -127,8 +155,7 @@ const ProductDetails = () => {
                       tabIndex="-1"
                       role="dialog"
                       aria-labelledby="ratingModalLabel"
-                      aria-hidden="true"
-                    >
+                      aria-hidden="true">
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
@@ -139,8 +166,7 @@ const ProductDetails = () => {
                               type="button"
                               className="close"
                               data-dismiss="modal"
-                              aria-label="Close"
-                            >
+                              aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
@@ -166,16 +192,14 @@ const ProductDetails = () => {
                             <textarea
                               name="review"
                               id="review"
-                              className="form-control mt-3"
-                            ></textarea>
+                              className="form-control mt-3"></textarea>
 
                             <button
                               className={
                                 "btn my-3 float-right review-btn px-4 text-white"
                               }
                               data-dismiss="modal"
-                              aria-label="Close"
-                            >
+                              aria-label="Close">
                               Submit
                             </button>
                           </div>

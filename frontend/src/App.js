@@ -15,6 +15,7 @@ import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
+import Cart from "./components/cart/Cart";
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/search/:keyword" element={<Home />} exact />
           <Route path="/search/:keyword" element={<Home />} exact />
           <Route path="/login" element={<Login />} exact />
+          <Route path="/cart" element={<Cart />} exact />
           <Route path="/register" element={<Register />} exact />
           <Route path="/password/forgot" element={<ForgotPassword />} exact />
           <Route
