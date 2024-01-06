@@ -11,7 +11,7 @@ import { addItemToCart } from "../../actions/cartAction";
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  console.log("this is id of product detaild", id);
+
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, product, error } = useSelector((state) => {
@@ -90,7 +90,7 @@ const ProductDetails = () => {
                 </div>
                 <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
 
-                <hr />
+                <hr /> 
 
                 <p id="product_price">{product.price}</p>
                 <div className="stockCounter d-inline">

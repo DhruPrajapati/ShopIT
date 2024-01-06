@@ -4,7 +4,10 @@ import {
   SAVE_SHIPPPING_INFO,
 } from "../constants/cartConstants";
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (
+  state = { cartItems: [], shippingInfo: {} },
+  action
+) => {
   switch (action.type) {
     case ADD_TO_CART:
       const item = action.payload;
@@ -15,7 +18,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
 
       if (isItemExist) {
         return {
-          ...state,
+          ...state, 
           cartItems: state.cartItems.map((i) =>
             i.product === isItemExist.product ? item : i
           ),

@@ -1,4 +1,6 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.wordWrap": "wordWrapColumn"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "wordWrapColumn",
+  "chat.editor.wordWrap": "on",
+  "editor.wrappingStrategy": "simple"
 }

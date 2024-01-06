@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import { useAlert } from "react-alert";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login, clearErrors } from "../../actions/userActions";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const location = useLocation();
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -20,7 +23,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      navigate(redirect);
     }
 
     if (error) {
@@ -74,8 +77,7 @@ const Login = () => {
                 <button
                   id="login_button"
                   type="submit"
-                  className="btn btn-block py-3"
-                >
+                  className="btn btn-block py-3">
                   LOGIN
                 </button>
 
