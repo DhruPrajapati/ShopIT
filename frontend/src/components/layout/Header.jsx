@@ -10,7 +10,7 @@ const Header = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const {cartItems} =  useSelector(state => state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
   const { user, loading } = useSelector((state) => state.auth);
 
   const logoutHandler = () => {
@@ -52,8 +52,7 @@ const Header = () => {
                 id="dropDownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false"
-              >
+                aria-expanded="false">
                 <figure className="avatar avatar-nav">
                   <img
                     src={user.avatar && user.avatar.url}
@@ -66,25 +65,22 @@ const Header = () => {
               <div
                 className="dropdown-menu "
                 style={{ left: "1.5in" }}
-                aria-labelledby="dropDownMenuButton"
-              >
-                {user && user.role !== "admin" ? (
-                  <Link className="dropdown-item" to="/orders/me">
-                    Orders
-                  </Link>
-                ) : (
+                aria-labelledby="dropDownMenuButton">
+                {user && user.role === "admin" && (
                   <Link className="dropdown-item" to="/dashboard">
                     Dashboard
                   </Link>
                 )}
+                <Link className="dropdown-item" to="/orders/me">
+                  Orders
+                </Link>
                 <Link className="dropdown-item" to="/me">
                   Profile
                 </Link>
                 <Link
                   className="dropdown-item text-danger"
                   to="/"
-                  onClick={logoutHandler}
-                >
+                  onClick={logoutHandler}>
                   Logout
                 </Link>
               </div>
