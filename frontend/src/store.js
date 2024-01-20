@@ -9,6 +9,8 @@ import {
   productDetailsReducer,
   productReducer,
   newReviewReducer,
+  newProductReducer,
+  deleteProductReducer,
 } from "./reducers/productReducers";
 import {
   authReducer,
@@ -33,6 +35,8 @@ const reducer = combineReducers({
   myOrders: myOrdersReducer,
   orderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
+  newProduct: newProductReducer,
+  product: deleteProductReducer,
 });
 
 let initailState = {

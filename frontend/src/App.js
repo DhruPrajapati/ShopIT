@@ -25,6 +25,10 @@ import Payment from "./components/cart/Payment";
 import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
+import Dashboard from "./components/admin/Dashboard";
+import ProductList from "./components/admin/ProductList";
+import NewProduct from "./components/admin/NewProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
 
 function App() {
   const [stripeApiKey, setStripApikey] = useState("");
@@ -84,6 +88,12 @@ function App() {
           <Route path="/order/:id" element={<OrderDetails />} />
         </Routes>
       </div>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/products" element={<ProductList />} />
+        <Route path="/admin/product" element={<NewProduct />} />
+        <Route path="/admin/product/:id" element={<UpdateProduct />} />
+      </Routes>
       <Footer />
     </div>
   );
